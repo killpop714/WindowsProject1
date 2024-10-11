@@ -59,6 +59,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 //두번째
 
+//다음 내용 저장
+// 
 //
 //  함수: MyRegisterClass()
 //
