@@ -57,7 +57,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 //깃허브 테스트
 
-//다음 테스트
+//두번째
 
 //
 //  함수: MyRegisterClass()
