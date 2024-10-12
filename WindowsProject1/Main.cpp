@@ -22,6 +22,8 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
+Lee::Application app;
+
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다: 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -30,7 +32,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
-
 
     // TODO: 여기에 코드를 입력합니다.
 
@@ -63,17 +64,17 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         {
             if (msg.message == WM_QUIT)
                 break;
-        }
-
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
         }
         else
         {
             //메세지가 없을 경우 여기서 처리
             //게임 로직이 돌아가면 된다.
+            app.Run();
         }
     }
 
@@ -135,6 +136,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+
+   app.Initalize(hWnd);
+
 
    if (!hWnd)
    {
@@ -213,7 +217,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             SelectObject(hdc, oldBrush);
             
-
+            Rectangle(hdc, 600, 600, 700, 700);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             //GDI 모듈에 의해서 관리된다.
             //화면 출력에 필요한 모든 경우는 WINAPI 에서는 DC를 통해서 작업을 한다.

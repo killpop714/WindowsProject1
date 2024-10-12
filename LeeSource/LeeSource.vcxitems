@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)LeeApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Leelib.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)LeeApplication.cpp" />

@@ -1,7 +1,23 @@
 #pragma once
-class Application
+#include "Leelib.h"
+
+namespace Lee
 {
-public:
-	void test();
-};
+
+	class Application
+	{
+	public:
+		void Initalize(HWND hwnd);
+		void Run();
+
+		void Update();
+		void LateUpdate();
+		void Render();
+
+	private:
+		HWND lhwnd;
+		HDC lhdc;
+	};
+}
+
 
