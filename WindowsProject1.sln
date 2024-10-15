@@ -5,6 +5,10 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WindowsProject1", "WindowsProject1\WindowsProject1.vcxproj", "{B0FC4C3D-4B4F-4202-9D7E-5C8B467DDC83}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Leetry_Window", "Leetry_Window\Leetry_Window.vcxproj", "{546BC9DC-C510-44C0-9F90-9140FA48E4A8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LeeSource", "LeeSource\LeeSource.vcxitems", "{013FD96A-4611-481A-9D7D-A7CE1C19194B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,11 +25,23 @@ Global
 		{B0FC4C3D-4B4F-4202-9D7E-5C8B467DDC83}.Release|x64.Build.0 = Release|x64
 		{B0FC4C3D-4B4F-4202-9D7E-5C8B467DDC83}.Release|x86.ActiveCfg = Release|Win32
 		{B0FC4C3D-4B4F-4202-9D7E-5C8B467DDC83}.Release|x86.Build.0 = Release|Win32
+		{546BC9DC-C510-44C0-9F90-9140FA48E4A8}.Debug|x64.ActiveCfg = Debug|x64
+		{546BC9DC-C510-44C0-9F90-9140FA48E4A8}.Debug|x64.Build.0 = Debug|x64
+		{546BC9DC-C510-44C0-9F90-9140FA48E4A8}.Debug|x86.ActiveCfg = Debug|Win32
+		{546BC9DC-C510-44C0-9F90-9140FA48E4A8}.Debug|x86.Build.0 = Debug|Win32
+		{546BC9DC-C510-44C0-9F90-9140FA48E4A8}.Release|x64.ActiveCfg = Release|x64
+		{546BC9DC-C510-44C0-9F90-9140FA48E4A8}.Release|x64.Build.0 = Release|x64
+		{546BC9DC-C510-44C0-9F90-9140FA48E4A8}.Release|x86.ActiveCfg = Release|Win32
+		{546BC9DC-C510-44C0-9F90-9140FA48E4A8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1F6E3CAF-C0A4-4197-9D9D-BA8E3EC6B92E}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		LeeSource\LeeSource.vcxitems*{013fd96a-4611-481a-9d7d-a7ce1c19194b}*SharedItemsImports = 9
+		LeeSource\LeeSource.vcxitems*{546bc9dc-c510-44c0-9f90-9140fa48e4a8}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

@@ -4,6 +4,11 @@
 #include "framework.h"
 #include "WindowsProject1.h"
 
+#include "..\LeeSource\LeeApplication.h"
+
+
+
+
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
@@ -17,6 +22,9 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
+Lee::Application app;
+
+// 이 코드 모듈에 포함된 함수의 선언을 전달합니다: 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
@@ -42,15 +50,42 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
+    //GetMessage(&msg,nullptr,0,0)
+    //프로세스에서 발생한 메세지를 메세지 큐에서 가져오는 함수
+    //메세지큐에 아무것도 없다면  아무 메세지도 가져오지 않는다.
+
+    //PeekMessage : 메세지큐에 메세지 유무에 상관없이 함수가 리턴된다.
+    //              리턴 값이 true인 경우 메세지가 있고 false인 경우는 메세지가 없다고 가르킨다.
+
     // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if (msg.message == WM_QUIT)
+                break;
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+        }
+        else
+        {
+            //메세지가 없을 경우 여기서 처리
+            //게임 로직이 돌아가면 된다.
+            app.Run();
         }
     }
+
+    //while (GetMessage(&msg, nullptr, 0, 0))
+    //{
+    //    if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+    //    {
+    //        TranslateMessage(&msg);
+    //        DispatchMessage(&msg);
+    //    }
+    //}
 
     return (int) msg.wParam;
 }
@@ -106,6 +141,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
+   app.Initalize(hWnd);
+
+
    if (!hWnd)
    {
       return FALSE;
@@ -148,11 +186,49 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+
+    case WM_KEYDOWN:
+    {
+
+    }
+    break;
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
+
+            //파란 브러쉬 생성
+            HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));
+            //파랑 브러쉬 DC에 선택 그리고 흰색 브러쉬 반환값 반환
+            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
+
+            HPEN redpen = CreatePen(PS_SOLID, 2, (RGB(255, 0, 0)));
+
+            Rectangle(hdc, 100, 100, 200, 200);
+
+            //흰색 브러쉬 선택
+            HPEN oldPen = (HPEN)SelectObject(hdc, redpen);
+            (HBRUSH)SelectObject(hdc, oldBrush);
+            Ellipse(hdc, 200, 200, 300, 300);
+            //파랑 브러쉬 제거
+            DeleteObject(brush);
+            DeleteObject(redpen);
+  
+
+            HBRUSH graybrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
+            oldBrush = (HBRUSH)SelectObject(hdc, graybrush);
+            Rectangle(hdc, 400, 400, 500, 500);
+
+            SelectObject(hdc, oldBrush);
+            
+            Rectangle(hdc, 600, 600, 700, 700);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+            //GDI 모듈에 의해서 관리된다.
+            //화면 출력에 필요한 모든 경우는 WINAPI 에서는 DC를 통해서 작업을 한다.
+
+            //기본으로 자주사용되는 GDI 오브젝트를 미리 DC안에 만들어두었는데
+            //그 오브젝트들을 스톡 오브젝트라고 한다.
+
             EndPaint(hWnd, &ps);
         }
         break;
