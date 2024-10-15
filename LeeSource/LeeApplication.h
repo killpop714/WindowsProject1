@@ -22,6 +22,8 @@ namespace Lee
 		HDC lhdc;
 
 		float mSpeed;
+		float mX;
+		float mY;
 	};
 }
 
