@@ -2,6 +2,17 @@
 
 namespace Lee
 {
+	Application::Application()
+		:lhwnd(nullptr)
+		, lhdc(nullptr)
+		, mSpeed(0)
+	{
+
+	}
+
+	Application::~Application()
+	{
+	}
 	void Application::Initalize(HWND hwnd)
 	{
 		lhwnd = hwnd;
@@ -15,12 +26,18 @@ namespace Lee
 	}
 	void Application::Update()
 	{
+		
+		mSpeed += 0.1;
 	}
 	void Application::LateUpdate()
 	{
 	}
 	void Application::Render()
 	{
-		Rectangle(lhdc, 500, 500, 600, 600);
+		PAINTSTRUCT ps;
+		HBRUSH gbrush = (HBRUSH)CreateSolidBrush(RGB(155, 155, 30));
+		HBRUSH oldbrush = (HBRUSH)SelectObject(lhdc, gbrush);
+		Rectangle(lhdc, 100, 100, 200, 200);
+		
 	}
 }

@@ -7,6 +7,9 @@ namespace Lee
 	class Application
 	{
 	public:
+		Application();
+		~Application();
+
 		void Initalize(HWND hwnd);
 		void Run();
 
@@ -17,6 +20,8 @@ namespace Lee
 	private:
 		HWND lhwnd;
 		HDC lhdc;
+
+		float mSpeed;
 	};
 }
 

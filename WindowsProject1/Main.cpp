@@ -194,34 +194,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     break;
     case WM_PAINT:
         {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-
-            //파란 브러쉬 생성
-            HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));
-            //파랑 브러쉬 DC에 선택 그리고 흰색 브러쉬 반환값 반환
-            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
-
-            HPEN redpen = CreatePen(PS_SOLID, 2, (RGB(255, 0, 0)));
-
-            Rectangle(hdc, 100, 100, 200, 200);
-
-            //흰색 브러쉬 선택
-            HPEN oldPen = (HPEN)SelectObject(hdc, redpen);
-            (HBRUSH)SelectObject(hdc, oldBrush);
-            Ellipse(hdc, 200, 200, 300, 300);
-            //파랑 브러쉬 제거
-            DeleteObject(brush);
-            DeleteObject(redpen);
-  
-
-            HBRUSH graybrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
-            oldBrush = (HBRUSH)SelectObject(hdc, graybrush);
-            Rectangle(hdc, 400, 400, 500, 500);
-
-            SelectObject(hdc, oldBrush);
-            
-            Rectangle(hdc, 600, 600, 700, 700);
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             //GDI 모듈에 의해서 관리된다.
             //화면 출력에 필요한 모든 경우는 WINAPI 에서는 DC를 통해서 작업을 한다.
