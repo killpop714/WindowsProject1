@@ -1,6 +1,5 @@
 #pragma once
-#include "Leelib.h"
-
+#include "GameObject.h"
 namespace Lee
 {
 
@@ -22,8 +21,9 @@ namespace Lee
 		HDC lhdc;
 
 		float mSpeed;
-		float mX;
-		float mY;
+
+		//플레이어 정보
+		GameObject mplayer;
 	};
 }
 
